@@ -9,8 +9,9 @@ import {
 import {GiftedChat, Actions, Bubble, SystemMessage} from 'react-native-gifted-chat';
 import CustomActions from './CustomActions';
 import CustomView from './CustomView';
+import Flight from './Flight';
 
-export default class Example extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -162,6 +163,7 @@ export default class Example extends React.Component {
             backgroundColor: '#f0f0f0',
           }
         }}
+        renderCustomView={this.renderCustomView}
       />
     );
   }
@@ -181,11 +183,26 @@ export default class Example extends React.Component {
   }
 
   renderCustomView(props) {
+    let flight = {
+      message: "Hello. It looks like you need a flight for Shannon from LAX-JFK on Mar 8 2019. Is this correct?",
+      date:'Mar 08 - Mar 10',
+      dest:'Los Angeles - New York',
+      stop:'1 Stop - 8h 15m',
+      total:'$625',
+      subTotal:'$625'
+    }
+
+    let propstemp = { ...props, flight }
+
     return (
-      <CustomView
-        {...props}
-      />
+      <Flight {...propstemp}/>
     );
+
+    // return (
+    //   <CustomView
+    //     {...props}
+    //   />
+    // );
   }
 
   renderFooter(props) {
@@ -224,7 +241,6 @@ export default class Example extends React.Component {
         renderActions={this.renderCustomActions}
         renderBubble={this.renderBubble}
         renderSystemMessage={this.renderSystemMessage}
-        renderCustomView={this.renderCustomView}
         renderFooter={this.renderFooter}
         renderLoading={this.renderLoading}
       />
