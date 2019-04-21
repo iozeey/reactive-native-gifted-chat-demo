@@ -201,6 +201,13 @@ export default class Example extends React.Component {
     return null;
   }
 
+  renderLoading(props) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center',flexDirection:'column', alighItems:'center'}}>
+        <Text style={{color: '#777',textAlign:'center'}}>Loading...</Text>
+      </View>
+    )
+  }
   render() {
     return (
       <GiftedChat
@@ -219,6 +226,7 @@ export default class Example extends React.Component {
         renderSystemMessage={this.renderSystemMessage}
         renderCustomView={this.renderCustomView}
         renderFooter={this.renderFooter}
+        renderLoading={this.renderLoading}
       />
     );
   }
