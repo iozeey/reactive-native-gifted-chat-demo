@@ -36,7 +36,7 @@ export default class CustomActions extends React.Component {
   }
 
   onActionsPress() {
-    const options = ['Choose From Library', 'Send Location','Flight Details', 'Cancel'];
+    const options = ['Choose From Library', 'Send Location','Flight Info', 'Cancel'];
     const cancelButtonIndex = options.length - 1;
     this.context.actionSheet().showActionSheetWithOptions({
       options,
@@ -60,6 +60,18 @@ export default class CustomActions extends React.Component {
             (error) => alert(error.message),
             {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
           );
+          break;
+        case 2:
+            this.props.onSend({
+              flight: {
+                message: "One Hello. It looks like you need a flight for Shannon from LAX-JFK on Mar 8 2019. Is this correct?",
+                date:'Mar 08 - Mar 10',
+                dest:'Los Angeles - New York',
+                stop:'1 Stop - 8h 15m',
+                total:'$625',
+                subTotal:'$625'
+              }
+            });
           break;
         default:
       }
